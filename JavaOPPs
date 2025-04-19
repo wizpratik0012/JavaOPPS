@@ -1,0 +1,162 @@
+1. Classes and Objects in Java:
+class Student {
+    String name;
+    int rollNo;
+
+    void display() {
+        System.out.println("Name: " + name + ", Roll No: " + rollNo);
+    }
+    
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        s1.name = "Pratik";
+        s1.rollNo = 43;
+        s1.display();
+    }
+}
+
+Constructors, Destructors and Overloading:
+class Box {
+    int width, height;
+
+    Box() {
+        width = height = 0;
+        System.out.println("Default Constructor");
+    }
+
+    Box(int w, int h) {
+        width = w;
+        height = h;
+        System.out.println("Parameterized Constructor");
+    }
+
+    void display() {
+        System.out.println("Width: " + width + ", Height: " + height);
+    }
+
+    protected void finalize() {
+        System.out.println("Object is destroyed");
+    }
+
+    public static void main(String[] args) {
+        Box b1 = new Box();
+        Box b2 = new Box(1, 20);
+        b1.display();
+        b2.display();
+        b1 = null;
+        b2 = null;
+        System.gc();
+    }
+}
+
+3. Inheritance:
+class University {
+    void student() {
+        System.out.println("In the University");
+    }
+}
+
+class Teacher extends University {
+    void student() {
+        System.out.println("In the class");
+    }
+
+    public static void main(String[] args) {
+        Teacher d = new Teacher();
+        d.student();
+    }
+}
+
+4. Interface:
+interface Playing {
+    void play();
+}
+
+class Ground implements Playing {
+    public void play() {
+        System.out.println("Students are Playing");
+    }
+
+    public static void main(String[] args) {
+        Playing d = new Ground();
+        d.play();
+    }
+}
+
+
+5. Packages:
+File 1 (inside package folder mypack) - MyClass.java:
+package mypack;
+
+public class MyClass {
+    public void show() {
+        System.out.println("Hello from MyClass in mypack");
+    }
+}
+File 2 - MainClass.java:
+import mypack.MyClass;
+
+public class MainClass {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        obj.show();
+    }
+}
+
+6. Exception Handling:
+public class Yash {
+    public static void main(String[] args) {
+        try {
+            int a = 10 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero");
+        } finally {
+            System.out.println("Finally block executed");
+        }
+    }
+}
+
+7. Generics (Class and Method):
+class GenericClass<T> {
+    T value;
+
+    GenericClass(T val) {
+        value = val;
+    }
+
+    void display() {
+        System.out.println("Value: " + value);
+    }
+
+    static <E> void genericMethod(E element) {
+        System.out.println("Element: " + element);
+    }
+
+    public static void main(String[] args) {
+        GenericClass<Integer> obj1 = new GenericClass<>(123);
+        obj1.display();
+        genericMethod("Hello Generics");
+    }
+}
+
+8. File Handling:
+import java.io.*;
+
+public class FileHandlingDemo {
+    public static void main(String[] args) {
+        try {
+            FileWriter writer = new FileWriter("output.txt");
+            writer.write("Hello File Handling!");
+            writer.close();
+
+            BufferedReader reader = new BufferedReader(new FileReader("output.txt"));
+            String line;
+            while ((line = reader.readLine()) != null)
+                System.out.println("File Content: " + line);
+            reader.close();
+
+        } catch (IOException e) {
+            System.out.println("File error: " + e.getMessage());
+        }
+    }
+}
